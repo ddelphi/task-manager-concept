@@ -48,7 +48,9 @@ The data structure of the taskData will be demonstrated after.
 For the second step, the taskManager object will iterate each event params from the key `events` of the taskData, then from the event keyword "task/event/<the event name>" which will be dispatched, with the event params.
 
 The event data dispatched by the taskManager object, has its own data structure:
-	
+
+```javascript
+
 	// the data structure of the event data
 	// take the timer event handler as an example
 	
@@ -60,6 +62,8 @@ The event data dispatched by the taskManager object, has its own data structure:
 	}
 	taskManager.trigger("task/event/timer", eventData)
 
+```
+
 The value of `data` will be the event params. And the value of `info` will be the action handler's params, which should be used in sending back to the taskManager object to execute the action.
 
 For the third step, the event handler object receive the event and the event params, then process the params. When the event handler object meets the condition of the event params, it will trigger the event "task/action" with the action info data.
@@ -69,16 +73,18 @@ Finally, the taskManager object receive the event "task/action", then send the c
 ## data structure
 
 The data structure of the task params should be:
-		
-	// model version
+
+```javascript
 	
+	// model version
+
 	task_params = {
 		"action": ...
 		"events": ...
 	}
-	
+
 	// for example
-	
+
 	var task_datatructure = {
 		"action": [
 			{
@@ -94,6 +100,8 @@ The data structure of the task params should be:
 			}
 		}
 	}
+	
+```
 
 Because the action object and the event handler object are up to you, so the actual params data structure under the keys `action` and `events` are up to you.
 
@@ -102,6 +110,7 @@ Because the action object and the event handler object are up to you, so the act
 There is an example code which will demonstrate the concept of the script:
 
 ```javascript
+
 	var taskManager = new TaskManager()
 	var action = new ActionObject()
 	var timer = new Timer()
@@ -124,6 +133,7 @@ There is an example code which will demonstrate the concept of the script:
 	// when the timer meets the situation of the params
 	// the timer object will trigger back to the taskManager object
 	// then the taskManager object will trigger the action
+	
 ```
 
 
